@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description1234567"
+        content="A creative image gallery showcasing original designs.">
+
+  <title>My Design Gallery</title>
+
+  <style>
+    /* =========================
+       RESET
+    ========================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #f7f7f7;
+      --card: #ffffff;
+      --text: #111111;
+      --muted: #777777;
+      --border: #e5e5e5;
+      --button: #111111;
+      --button-text: #ffffff;
+    }
+
+    body.dark {
+      --bg: #0d0d0d;
+      --card: #171717;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+      --border: #292929;
+      --button: #ffffff;
+      --button-text: #111111;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      height: 72px;
+      margin: auto;
+      padding: 0 25px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      opacity: 0.45;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.55;
+    }
+
+    .theme-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--card);
+      color: var(--text);
+    }
+
+    /* =========================
+       MAIN
+    ========================== */
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 25px;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      text-align: center;
+      padding: 110px 20px 90px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 8vw, 90px);
+      line-height: 0.95;
+      letter-spacing: -5px;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .primary-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 23px;
+
+      border: none;
+      border-radius: 8px;
+
+      background: var(--button);
+      color: var(--button-text);
+
+      font-weight: 700;
+    }
+
+    /* =========================
+       GALLERY HEADER
+    ========================== */
+
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 25px;
+    }
+
+    .gallery-header h2 {
+      font-size: 30px;
+    }
+
+    .search-box {
+      width: 250px;
+      padding: 12px 15px;
+
+      border: 1px solid var(--border);
+      border-radius: 8px;
+
+      background: var(--card);
+      color: var(--text);
+
+      outline: none;
+    }
+
+    .search-box:focus {
+      border-color: var(--text);
+    }
+
+    /* =========================
+       GALLERY
+    ========================== */
+
+    .gallery {
+      columns: 4 230px;
+      column-gap: 16px;
+    }
+
+    .image-card {
+      break-inside: avoid;
+
+      margin-bottom: 16px;
+
+      overflow: hidden;
+
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      cursor: pointer;
+
+      transition: transform 0.25s;
+    }
+
+    .image-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .image-card img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      transition: transform 0.3s;
+    }
+
+    .image-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .image-info {
+      padding: 14px;
+    }
+
+    .image-info h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .image-info p {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .empty {
+      text-align: center;
+
+      padding: 80px 20px;
+
+      color: var(--muted);
+      column-span: all;
+    }
+
+    /* =========================
+       ABOUT
+    ========================== */
+
+    .about {
+      padding: 120px 0 60px;
+    }
+
+    .about h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      max-width: 650px;
+
+      color: var(--muted);
+
+      line-height: 1.8;
+    }
+
+    /* =========================
+       ADMIN
+    ========================== */
+
+    .admin-section {
+      display: none;
+
+      margin: 100px auto;
+
+      max-width: 800px;
+
+      padding: 30px;
+
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+    }
+
+    .admin-section.active {
+      display: block;
+    }
+
+    .admin-section h2 {
+      margin-bottom: 10px;
+    }
+
+    .note {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.6;
+
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+
+      padding: 13px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 8px;
+
+      background: var(--bg);
+
+      color: var(--text);
+
+      outline: none;
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+
+      resize: vertical;
+    }
+
+    .upload-box {
+      padding: 35px;
+
+      margin-bottom: 20px;
+
+      text-align: center;
+
+      border: 2px dashed var(--border);
+
+      border-radius: 12px;
+
+      color: var(--muted);
+    }
+
+    .upload-box input {
+      max-width: 100%;
+    }
+
+    /* =========================
+       ADMIN LIST
+    ========================== */
+
+    .admin-list {
+      margin-top: 30px;
+
+      border-top: 1px solid var(--border);
+    }
+
+    .admin-item {
+      display: flex;
+
+      align-items: center;
+
+      gap: 15px;
+
+      padding: 13px 0;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .admin-item img {
+      width: 65px;
+      height: 65px;
+
+      object-fit: cover;
+
+      border-radius: 8px;
+    }
+
+    .admin-item-info {
+      flex: 1;
+    }
+
+    .admin-item-info strong {
+      display: block;
+
+      margin-bottom: 4px;
+    }
+
+    .delete-btn {
+      border: none;
+
+      padding: 9px 12px;
+
+      border-radius: 7px;
+
+      background: #d93636;
+
+      color: white;
+    }
+
+    .logout-btn {
+      border: 1px solid var(--border);
+
+      background: var(--card);
+
+      color: var(--text);
+
+      padding: 10px 15px;
+
+      border-radius: 8px;
+
+      margin-left: 8px;
+    }
+
+    /* =========================
+       MODAL / IMAGE VIEWER
+    ========================== */
+
+    .modal {
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 200;
+
+      padding: 25px;
+
+      background: rgba(0, 0, 0, 0.85);
+
+      overflow-y: auto;
+
+      align-items: center;
+
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+
+      width: min(900px, 100%);
+
+      padding: 20px;
+
+      background: var(--card);
+
+      color: var(--text);
+
+      border-radius: 15px;
+    }
+
+    .close-btn {
+      position: absolute;
+
+      top: 12px;
+      right: 12px;
+
+      width: 40px;
+      height: 40px;
+
+      border-radius: 50%;
+
+      border: 1px solid var(--border);
+
+      background: var(--card);
+
+      color: var(--text);
+
+      font-size: 20px;
+    }
+
+    .viewer-image {
+      width: 100%;
+
+      max-height: 70vh;
+
+      object-fit: contain;
+
+      border-radius: 10px;
+
+      margin-bottom: 20px;
+    }
+
+    .viewer-description {
+      color: var(--muted);
+
+      line-height: 1.7;
+
+      margin-top: 8px;
+    }
+
+    .viewer-actions {
+      display: flex;
+
+      gap: 10px;
+
+      margin-top: 20px;
+    }
+
+    .viewer-actions button {
+      padding: 10px 15px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 8px;
+
+      background: var(--card);
+
+      color: var(--text);
+    }
+
+    /* =========================
+       LOGIN
+    ========================== */
+
+    .login-box {
+      max-width: 420px;
+
+      margin: 50px auto 0;
+
+      padding: 25px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      text-align: center;
+
+      padding: 80px 20px 35px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 700px) {
+
+      .navbar {
+        padding: 0 15px;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-links a {
+        display: none;
+      }
+
+      main {
+        padding: 0 15px;
+      }
+
+      .hero {
+        padding: 80px 10px 65px;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .gallery-header {
+        display: block;
+      }
+
+      .search-box {
+        width: 100%;
+
+        margin-top: 15px;
+      }
+
+      .gallery {
+        columns: 2 150px;
+        column-gap: 10px;
+      }
+
+      .image-card {
+        margin-bottom: 10px;
+      }
+
+      .admin-section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header>
+
+  <div class="navbar">
+
+    <div class="logo">
+      DESIGN<span>GALLERY</span>
+    </div>
+
+    <div class="nav-links">
+
+      <a href="#home">Home</a>
+
+      <a href="#gallery">Gallery</a>
+
+      <a href="#about">About</a>
+
+      <a href="#admin" onclick="openAdmin()">
+        Admin
+      </a>
+
+      <button
+        class="theme-btn"
+        id="themeBtn"
+        title="Toggle dark mode">
+
+        ☾
+
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================== -->
+
+<main>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+  <h1>
+    My Design<br>
+    Gallery.
+  </h1>
+
+  <p>
+    A collection of my creative work,
+    designs and artwork.
+    Explore my latest uploads.
+  </p>
+
+  <a href="#gallery">
+
+    <button class="primary-btn">
+      Explore Gallery
+    </button>
+
+  </a>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section id="gallery">
+
+  <div class="gallery-header">
+
+    <h2>
+      Latest Designs
+    </h2>
+
+    <input
+      type="text"
+      id="searchBox"
+      class="search-box"
+      placeholder="Search designs..."
+    >
+
+  </div>
+
+
+  <div
+    class="gallery"
+    id="galleryGrid">
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section
+  class="about"
+  id="about">
+
+  <h2>
+    About
+  </h2>
+
+  <p>
+    Welcome to my design gallery.
+    This website is a simple portfolio
+    for showcasing my creative images
+    and artwork.
+  </p>
+
+</section>
+
+
+<!-- =========================
+     ADMIN
+========================== -->
+
+<section
+  class="admin-section"
+  id="admin">
+
+  <h2>
+    Admin Panel
+  </h2>
+
+  <p class="note">
+    Upload, manage and delete your designs.
+  </p>
+
+
+  <!-- LOGIN -->
+
+  <div id="loginArea">
+
+    <div class="form-group">
+
+      <label>
+        Admin Password
+      </label>
+
+      <input
+        type="password"
+        id="passwordInput"
+        placeholder="Enter password">
+
+    </div>
+
+    <button
+      class="primary-btn"
+      id="loginBtn">
+
+      Login
+
+    </button>
+
+    <p class="note">
+      Default password:
+      <strong>1234</strong>
+    </p>
+
+  </div>
+
+
+  <!-- UPLOAD AREA -->
+
+  <div
+    id="uploadArea"
+    style="display:none">
+
+    <div class="upload-box">
+
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/png,image/jpeg,image/webp">
+
+      <p style="margin-top:10px">
+        JPG, PNG or WEBP
+      </p>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Design Title
+      </label>
+
+      <input
+        type="text"
+        id="titleInput"
+        placeholder="Example: Creative Design 01">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Description
+      </label>
+
+      <textarea
+        id="descriptionInput"
+        placeholder="Write a short description..."></textarea>
+
+    </div>
+
+
+    <button
+      class="primary-btn"
+      id="uploadBtn">
+
+      Upload Design
+
+    </button>
+
+
+    <button
+      class="logout-btn"
+      id="logoutBtn">
+
+      Logout
+
+    </button>
+
+
+    <div
+      class="admin-list"
+      id="adminList">
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+  © 2026 My Design Gallery.
+  All Rights Reserved.
+
+</footer>
+
+
+<!-- =========================
+     IMAGE VIEWER
+========================== -->
+
+<div
+  class="modal"
+  id="imageModal">
+
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      id="closeModal">
+
+      ×
+
+    </button>
+
+
+    <img
+      class="viewer-image"
+      id="viewerImage"
+      src=""
+      alt="">
+
+
+    <h2 id="viewerTitle"></h2>
+
+
+    <p
+      class="viewer-description"
+      id="viewerDescription">
+    </p>
+
+
+    <div class="viewer-actions">
+
+      <button id="shareBtn">
+        ↗ Share
+      </button>
+
+      <button id="openImageBtn">
+        ↗ Open Image
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+  /*
+  ==========================================
+  SETTINGS
+  ==========================================
+  */
+
+  const ADMIN_PASSWORD = "1234";
+
+  const STORAGE_KEY =
+    "my_design_gallery";
+
+
+  /*
+  ==========================================
+  ELEMENTS
+  ==========================================
+  */
+
+  const galleryGrid =
+    document.getElementById("galleryGrid");
+
+  const searchBox =
+    document.getElementById("searchBox");
+
+  const themeBtn =
+    document.getElementById("themeBtn");
+
+  const adminSection =
+    document.getElementById("admin");
+
+  const loginArea =
+    document.getElementById("loginArea");
+
+  const uploadArea =
+    document.getElementById("uploadArea");
+
+  const passwordInput =
+    document.getElementById("passwordInput");
+
+  const loginBtn =
+    document.getElementById("loginBtn");
+
+  const logoutBtn =
+    document.getElementById("logoutBtn");
+
+  const imageInput =
+    document.getElementById("imageInput");
+
+  const titleInput =
+    document.getElementById("titleInput");
+
+  const descriptionInput =
+    document.getElementById("descriptionInput");
+
+  const uploadBtn =
+    document.getElementById("uploadBtn");
+
+  const adminList =
+    document.getElementById("adminList");
+
+
+  /*
+  ==========================================
+  IMAGE VIEWER
+  ==========================================
+  */
+
+  const imageModal =
+    document.getElementById("imageModal");
+
+  const viewerImage =
+    document.getElementById("viewerImage");
+
+  const viewerTitle =
+    document.getElementById("viewerTitle");
+
+  const viewerDescription =
+    document.getElementById("viewerDescription");
+
+  const closeModal =
+    document.getElementById("closeModal");
+
+  const shareBtn =
+    document.getElementById("shareBtn");
+
+  const openImageBtn =
+    document.getElementById("openImageBtn");
+
+
+  /*
+  ==========================================
+  LOAD DESIGNS
+  ==========================================
+  */
+
+  let designs =
+    JSON.parse(
+      localStorage.getItem(STORAGE_KEY) || "[]"
+    );
+
+
+  /*
+  ==========================================
+  SAMPLE IMAGES
+  ==========================================
+  */
+
+  if (designs.length === 0) {
+
+    designs = [
+
+      {
+        id: "sample1",
+        title: "Creative Design",
+        description:
+          "Sample design. Replace it with your own image.",
+        image:
+          "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1200&q=85"
+      },
+
+      {
+        id: "sample2",
+        title: "Abstract Artwork",
+        description:
+          "Sample artwork for the gallery.",
+        image:
+          "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1200&q=85"
+      },
+
+      {
+        id: "sample3",
+        title: "Modern Design",
+        description:
+          "Sample modern design.",
+        image:
+          "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=1200&q=85"
+      }
+
+    ];
+
+  }
+
+
+  /*
+  ==========================================
+  SAVE
+  ==========================================
+  */
+
+  function saveDesigns() {
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(designs)
+    );
+
+  }
+
+
+  /*
+  ==========================================
+  ESCAPE HTML
+  ==========================================
+  */
+
+  function escapeHTML(text) {
+
+    return String(text || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  /*
+  ==========================================
+  RENDER GALLERY
+  ==========================================
+  */
+
+  function renderGallery(search = "") {
+
+    const keyword =
+      search.toLowerCase().trim();
+
+    const filtered =
+      designs.filter(design => {
+
+        return (
+          design.title
+            .toLowerCase()
+            .includes(keyword)
+
+          ||
+
+          design.description
+            .toLowerCase()
+            .includes(keyword)
+        );
+
+      });
+
+
+    galleryGrid.innerHTML = "";
+
+
+    if (filtered.length === 0) {
+
+      galleryGrid.innerHTML = `
+        <div class="empty">
+          No designs found.
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    filtered.forEach(design => {
+
+      const card =
+        document.createElement("article");
+
+      card.className =
+        "image-card";
+
+
+      card.innerHTML = `
+
+        <img
+          src="${design.image}"
+          alt="${escapeHTML(design.title)}"
+          loading="lazy">
+
+        <div class="image-info">
+
+          <h3>
+            ${escapeHTML(design.title)}
+          </h3>
+
+          <p>
+            ${escapeHTML(design.description)}
+          </p>
+
+        </div>
+
+      `;
+
+
+      card.addEventListener(
+        "click",
+        () => openViewer(design)
+      );
+
+
+      galleryGrid.appendChild(card);
+
+    });
+
+  }
+
+
+  /*
+  ==========================================
+  SEARCH
+  ==========================================
+  */
+
+  searchBox.addEventListener(
+    "input",
+    () => {
+
+      renderGallery(
+        searchBox.value
+      );
+
+    }
+  );
+
+
+  /*
+  ==========================================
+  IMAGE VIEWER
+  ==========================================
+  */
+
+  function openViewer(design) {
+
+    viewerImage.src =
+      design.image;
+
+    viewerImage.alt =
+      design.title;
+
+    viewerTitle.textContent =
+      design.title;
+
+    viewerDescription.textContent =
+      design.description || "";
+
+
+    openImageBtn.onclick = () => {
+
+      window.open(
+        design.image,
+        "_blank"
+      );
+
+    };
+
+
+    shareBtn.onclick = async () => {
+
+      if (navigator.share) {
+
+        try {
+
+          await navigator.share({
+
+            title: design.title,
+
+            text:
+              design.description
+
+          });
+
+        } catch (error) {
+
+          console.log(error);
+
+        }
+
+      } else {
+
+        try {
+
+          await navigator.clipboard.writeText(
+            design.image
+          );
+
+          alert(
+            "Image link copied!"
+          );
+
+        } catch {
+
+          alert(
+            "Sharing is not supported."
+          );
+
+        }
+
+      }
+
+    };
+
+
+    imageModal.classList.add(
+      "active"
+    );
+
+  }
+
+
+  /*
+  ==========================================
+  CLOSE VIEWER
+  ==========================================
+  */
+
+  closeModal.onclick = () => {
+
+    imageModal.classList.remove(
+      "active"
+    );
+
+  };
+
+
+  imageModal.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target === imageModal
+      ) {
+
+        imageModal.classList.remove(
+          "active"
+        );
+
+      }
+
+    }
+  );
+
+
+  /*
+  ==========================================
+  DARK MODE
+  ==========================================
+  */
+
+  themeBtn.addEventListener(
+    "click",
+    () => {
+
+      document.body.classList.toggle(
+        "dark"
+      );
+
+
+      const dark =
+        document.body.classList.contains(
+          "dark"
+        );
+
+
+      localStorage.setItem(
+        "darkMode",
+        dark
+      );
+
+
+      themeBtn.textContent =
+        dark ? "☀" : "☾";
+
+    }
+  );
+
+
+  if (
+    localStorage.getItem(
+      "darkMode"
+    ) === "true"
+  ) {
+
+    document.body.classList.add(
+      "dark"
+    );
+
+    themeBtn.textContent = "☀";
+
+  }
+
+
+  /*
+  ==========================================
+  OPEN ADMIN
+  ==========================================
+  */
+
+  function openAdmin() {
+
+    adminSection.classList.add(
+      "active"
+    );
+
+  }
+
+
+  /*
+  ==========================================
+  ADMIN LOGIN
+  ==========================================
+  */
+
+  loginBtn.addEventListener(
+    "click",
+    () => {
+
+      const password =
+        passwordInput.value;
+
+
+      if (
+        password === ADMIN_PASSWORD
+      ) {
+
+        sessionStorage.setItem(
+          "adminLoggedIn",
+          "true"
+        );
+
+
+        loginArea.style.display =
+          "none";
+
+        uploadArea.style.display =
+          "block";
+
+
+        renderAdminList();
+
+      } else {
+
+        alert(
+          "Incorrect password."
+        );
+
+      }
+
+    }
+  );
+
+
+  /*
+  ==========================================
+  CHECK LOGIN
+  ==========================================
+  */
+
+  if (
+    sessionStorage.getItem(
+      "adminLoggedIn"
+    ) === "true"
+  ) {
+
+    loginArea.style.display =
+      "none";
+
+    uploadArea.style.display =
+      "block";
+
+  }
+
+
+  /*
+  ==========================================
+  LOGOUT
+  ==========================================
+  */
+
+  logoutBtn.addEventListener(
+    "click",
+    () => {
+
+      sessionStorage.removeItem(
+        "adminLoggedIn"
+      );
+
+
+      loginArea.style.display =
+        "block";
+
+      uploadArea.style.display =
+        "none";
+
+      passwordInput.value = "";
+
+    }
+  );
+
+
+  /*
+  ==========================================
+  UPLOAD IMAGE
+  ==========================================
+  */
+
+  uploadBtn.addEventListener(
+    "click",
+    () => {
+
+      const file =
+        imageInput.files[0];
+
+      const title =
+        titleInput.value.trim();
+
+      const description =
+        descriptionInput.value.trim();
+
+
+      if (!file) {
+
+        alert(
+          "Please select an image."
+        );
+
+        return;
+
+      }
+
+
+      if (!title) {
+
+        alert(
+          "Please enter a design title."
+        );
+
+        return;
+
+      }
+
+
+      if (
+        file.size >
+        4 * 1024 * 1024
+      ) {
+
+        alert(
+          "Please use an image smaller than 4 MB."
+        );
+
+        return;
+
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload = function(event) {
+
+        const newDesign = {
+
+          id:
+            Date.now().toString(),
+
+          title:
+            title,
+
+          description:
+            description,
+
+          image:
+            event.target.result
+
+        };
+
+
+        designs.unshift(
+          newDesign
+        );
+
+
+        try {
+
+          saveDesigns();
+
+        } catch {
+
+          alert(
+            "Browser storage is full. Please use smaller images."
+          );
+
+          designs.shift();
+
+          return;
+
+        }
+
+
+        renderGallery(
+          searchBox.value
+        );
+
+        renderAdminList();
+
+
+        imageInput.value = "";
+
+        titleInput.value = "";
+
+        descriptionInput.value = "";
+
+
+        alert(
+          "Design uploaded successfully!"
+        );
+
+      };
+
+
+      reader.readAsDataURL(file);
+
+    }
+  );
+
+
+  /*
+  ==========================================
+  ADMIN LIST
+  ==========================================
+  */
+
+  function renderAdminList() {
+
+    adminList.innerHTML = "";
+
+
+    designs.forEach(design => {
+
+      const item =
+        document.createElement("div");
+
+      item.className =
+        "admin-item";
+
+
+      item.innerHTML = `
+
+        <img
+          src="${design.image}"
+          alt="">
+
+        <div class="admin-item-info">
+
+          <strong>
+            ${escapeHTML(design.title)}
+          </strong>
+
+          <span class="note">
+            ${escapeHTML(design.description)}
+          </span>
+
+        </div>
+
+        <button
+          class="delete-btn">
+
+          Delete
+
+        </button>
+
+      `;
+
+
+      const deleteButton =
+        item.querySelector(
+          ".delete-btn"
+        );
+
+
+      deleteButton.addEventListener(
+        "click",
+        () => {
+
+          const confirmed =
+            confirm(
+              "Delete this design?"
+            );
+
+
+          if (!confirmed) {
+            return;
+          }
+
+
+          designs =
+            designs.filter(
+              d => d.id !== design.id
+            );
+
+
+          saveDesigns();
+
+          renderGallery(
+            searchBox.value
+          );
+
+          renderAdminList();
+
+        }
+      );
+
+
+      adminList.appendChild(
+        item
+      );
+
+    });
+
+  }
+
+
+  /*
+  ==========================================
+  INITIAL LOAD
+  ==========================================
+  */
+
+  renderGallery();
+
+</script>
+
+</body>
+</html>
+```
